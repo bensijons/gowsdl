@@ -429,6 +429,9 @@ func normalize(value string) string {
 }
 
 func goString(s string) string {
+	if s == "" {
+		return "DEFAULT"
+	}
 	return strings.Replace(s, "\"", "\\\"", -1)
 }
 
@@ -592,6 +595,10 @@ func makePublic(identifier string) string {
 	if isBasicType(identifier) {
 		return identifier
 	}
+	if identifier == "" {
+		return "DEFAULT"
+	}
+
 	field := []rune(identifier)
 	if len(field) == 0 {
 		return identifier

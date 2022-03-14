@@ -25,7 +25,8 @@ var typesTmpl = `
 		{{with .Restriction}}
 			{{range .Enumeration}}
 				{{if .Doc}} {{.Doc | comment}} {{end}}
-				{{$typeName}}{{$value := replaceReservedWords .Value}}{{$value | makePublic}} {{$typeName}} = "{{goString .Value}}" {{end}}
+				{{$value := replaceReservedWords .Value}}
+				{{$typeName}}{{$value | makePublic}} {{$typeName}} = "{{goString .Value}}" {{end}}
 		{{end}}
 	)
 	{{end}}
@@ -150,7 +151,7 @@ var typesTmpl = `
 				{{else}}
 					type {{$typeName}} interface{}
 				{{end}}
-			
+
 				{{if .Restriction.Enumeration}}
 				const (
 					{{with .Restriction}}
